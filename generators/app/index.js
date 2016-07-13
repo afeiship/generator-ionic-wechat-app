@@ -38,8 +38,8 @@ module.exports = yeoman.Base.extend({
     this._fetchFromGit();
   },
   install: function () {
-    //this.installDependencies();
-    console.log('bower install && npm install');
+    this.installDependencies();
+    //console.log('bower install && npm install');
   },
   _rewriteProps: function () {
     var props = this.props;
