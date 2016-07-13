@@ -14,7 +14,7 @@ module.exports = yeoman.Base.extend({
     this.log(yosay(
       'Welcome to the delightful ' + chalk.red('generator-test-yo') + ' generator!'
     ));
-    
+
     var prompts = [{
       type: 'input',
       name: 'project_name',
@@ -22,11 +22,10 @@ module.exports = yeoman.Base.extend({
       default: function () {
         var cwd = path.basename(process.cwd());
         var result = cwd.split(/[-_]/);
-        result.shift();
         return result.join('-');
       }
     }];
-
+    
     return this.prompt(prompts).then(function (props) {
       // To access props later use this.props.someAnswer;
       this.props = props;
