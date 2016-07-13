@@ -25,7 +25,7 @@ module.exports = yeoman.Base.extend({
         return result.join('-');
       }
     }];
-    
+
     return this.prompt(prompts).then(function (props) {
       // To access props later use this.props.someAnswer;
       this.props = props;
@@ -38,7 +38,6 @@ module.exports = yeoman.Base.extend({
   },
   install: function () {
     this.installDependencies();
-    //console.log('bower install && npm install');
   },
   _rewriteProps: function () {
     var props = this.props;
