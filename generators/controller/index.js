@@ -18,12 +18,17 @@ module.exports = yeoman.Base.extend({
     var prompts = [{
       type: 'input',
       name: 'project_name',
-      message: 'Your project_name?',
+      message: 'Your project_name',
+      store: true,
       default: function() {
         var cwd = path.basename(process.cwd());
         var result = cwd.split(/[-_]/);
         return result.join('-');
       }
+    }, {
+      type: 'input',
+      name: 'controller_name',
+      message: 'Your controller_name (eg:user/user-list)?'
     }];
 
     return this.prompt(prompts).then(function(props) {
@@ -34,10 +39,42 @@ module.exports = yeoman.Base.extend({
 
   writing: function() {
     this._rewriteProps();
-    this._fetchFromGit();
+    this._copyRouteSinppets();
+    this._copyCtrlJS();
+    this._copyCtrlScss();
+    this._copyCtrlHtml();
+  },
+  _copyRouteSinppets: function() {
+    this.fs.copyTpl(
+      this.templatePath('ROUTE.MD'),
+      this.destinationPath('src/app/' + this._ctrlName + '/ROUTE.MD'),
+      this.props
+    );
+  },
+  _copyCtrlJS: function() {
+    this.fs.copyTpl(
+      this.templatePath('tmpl.controller.js'),
+      this.destinationPath('src/app/' + this._ctrlName + '/' + this._ctrlName + '.controller.js'),
+      this.props
+    );
+  },
+  _copyCtrlScss: function() {
+    this.fs.copyTpl(
+      this.templatePath('tmpl.scss'),
+      this.destinationPath('src/app/' + this._ctrlName + '/' + this._ctrlName + '.scss'),
+      this.props
+    );
+  },
+  _copyCtrlHtml: function() {
+    this.fs.copyTpl(
+      this.templatePath('tmpl.html'),
+      this.destinationPath('src/app/' + this._ctrlName + '/' + this._ctrlName + '.html'),
+      this.props
+    );
   },
   _rewriteProps: function() {
     var props = this.props;
+    this._ctrlName = this.props['controller_name'];
     _.each(props, function(prop, key) {
       this.props[this._camelCase(key)] = this._camelCase(prop);
     }, this);
@@ -45,31 +82,6 @@ module.exports = yeoman.Base.extend({
   _camelCase: function(inString) {
     return inString.replace(/[_-]\D/g, function(match) {
       return match.charAt(1).toUpperCase();
-    });
-  },
-  _fetchFromGit: function(inCallback) {
-    var self = this;
-    var done = this.async();
-    this.remote('afeiship', 'ionic-wechat-app', 'master', function(err, remote) {
-      self._extCopyTpl(path.join(remote.cachePath, './{**,.*}'), './');
-      done(err, self);
-    });
-  },
-  _extCopyTpl: function(inSrc, inDest) {
-    var self = this;
-    this.fs.copy(inSrc, inDest, {
-      process: function(contents, filename) {
-        var extname = path.extname(filename);
-        if (rExt.test(extname)) {
-          return ejs.render(
-            contents.toString(), self.props, {
-              filename: filename
-            }
-          );
-        } else {
-          return contents;
-        }
-      }
     });
   },
   install: function() {

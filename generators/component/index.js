@@ -18,12 +18,17 @@ module.exports = yeoman.Base.extend({
     var prompts = [{
       type: 'input',
       name: 'project_name',
-      message: 'Your project_name?',
+      message: 'Your project_name',
+      store: true,
       default: function() {
         var cwd = path.basename(process.cwd());
         var result = cwd.split(/[-_]/);
         return result.join('-');
       }
+    }, {
+      type: 'input',
+      name: 'component_name',
+      message: 'Your controller_name (eg:comp/my-componet)?'
     }];
 
     return this.prompt(prompts).then(function(props) {
@@ -34,10 +39,34 @@ module.exports = yeoman.Base.extend({
 
   writing: function() {
     this._rewriteProps();
-    this._fetchFromGit();
+    this._copyDirectiveJS();
+    this._copyDirectiveScss();
+    this._copyDirectiveHtml();
+  },
+  _copyDirectiveJS: function() {
+    this.fs.copyTpl(
+      this.templatePath('tmpl.directive.js'),
+      this.destinationPath('src/app/componets/' + this._compName + '.directive.js'),
+      this.props
+    );
+  },
+  _copyDirectiveScss: function() {
+    this.fs.copyTpl(
+      this.templatePath('tmpl.scss'),
+      this.destinationPath('src/app/componets/' + this._compName + '.scss'),
+      this.props
+    );
+  },
+  _copyDirectiveHtml: function() {
+    this.fs.copyTpl(
+      this.templatePath('tmpl.html'),
+      this.destinationPath('src/app/componets/' + this._compName + '.html'),
+      this.props
+    );
   },
   _rewriteProps: function() {
     var props = this.props;
+    this._compName = this.props['component_name'];
     _.each(props, function(prop, key) {
       this.props[this._camelCase(key)] = this._camelCase(prop);
     }, this);
@@ -47,33 +76,7 @@ module.exports = yeoman.Base.extend({
       return match.charAt(1).toUpperCase();
     });
   },
-  _fetchFromGit: function(inCallback) {
-    var self = this;
-    var done = this.async();
-    this.remote('afeiship', 'ionic-wechat-app', 'master', function(err, remote) {
-      self._extCopyTpl(path.join(remote.cachePath, './{**,.*}'), './');
-      done(err, self);
-    });
-  },
-  _extCopyTpl: function(inSrc, inDest) {
-    var self = this;
-    this.fs.copy(inSrc, inDest, {
-      process: function(contents, filename) {
-        var extname = path.extname(filename);
-        if (rExt.test(extname)) {
-          return ejs.render(
-            contents.toString(), self.props, {
-              filename: filename
-            }
-          );
-        } else {
-          return contents;
-        }
-      }
-    });
-  },
   install: function() {
-    console.log('install dependencies....');
     this.installDependencies();
   },
   end: function() {

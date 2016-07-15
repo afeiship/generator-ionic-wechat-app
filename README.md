@@ -16,6 +16,21 @@ Then generate your new project:
 yo ionic-wechat-app
 ```
 
+##Generate controller:
+```bash
+yo ionci-wechat-app:controller
+```
++ Then input your project_name (Most of time ,you can use the default one) and controller name;
++ `DON'T forget paste the ROUTE.MD to your own index.route.js.`
+
+
+##Generate component:
+```bash
+yo ionci-wechat-app:component
+```
+Then input your project_name (Most of time ,you can use the default one) and component name;
+
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
@@ -34,3 +49,5 @@ MIT © [feizheng](https://github.com/afeiship)
 [travis-url]: https://travis-ci.org/afeiship/generator-ionic-wechat-app
 [daviddm-image]: https://david-dm.org/afeiship/generator-ionic-wechat-app.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/afeiship/generator-ionic-wechat-app
+[yeoman-docs]: http://yeoman.io/generator/actions_remote.html
+[mes-fs]: https://github.com/sboudrias/mem-fs
