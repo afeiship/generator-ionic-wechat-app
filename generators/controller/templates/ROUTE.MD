@@ -3,7 +3,7 @@
 ```javascript
 .state('<%= controller_name %>', {
         url: '/<%= controller_name %>',
-        templateUrl: 'app/<%= controller_name %>/<%= controllerName %>.html',
+        templateUrl: 'app/<%= controller_name %>/index.html',
         controller: '<%= controllerName %>Controller',
         controllerAs: 'vm'
       })
