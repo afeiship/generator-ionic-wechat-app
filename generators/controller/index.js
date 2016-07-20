@@ -85,8 +85,7 @@ module.exports = yeoman.Base.extend({
     });
   },
   install: function() {
-    console.log('install dependencies....');
-    this.installDependencies();
+    //this.installDependencies();
   },
   end: function() {
     console.log('Enjoy coding~ :)');

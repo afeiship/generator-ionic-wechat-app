@@ -3,7 +3,7 @@
 
   angular
     .module('<%= projectName %>')
-    .controller('<%= controllerName %>Controller', MainController);
+    .controller('<%= controllerName %>Controller', <%= controllerName %>Controller);
 
   /** @ngInject */
   function <%= controllerName %>Controller($timeout, toastr) {
