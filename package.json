@@ -1,6 +1,6 @@
 {
   "name": "generator-ionic-wechat-app",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Yeoman generator for ionic-wechat-app.",
   "homepage": "https://github.com/afeiship/generator-ionic-wechat-app",
   "author": {

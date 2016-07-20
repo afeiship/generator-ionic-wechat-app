@@ -1,6 +1,11 @@
 # generator-ionic-wechat-app [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > Yeoman generator for ionic-wechat-app.
 
+##Reinstall:
+```bash
+$ npm uninstall -g generator-ionic-wechat-app
+$ npm install -g generator-ionic-wechat-app
+```
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-ionic-wechat-app using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
