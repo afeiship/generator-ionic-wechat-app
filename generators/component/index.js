@@ -5,7 +5,6 @@ var yosay = require('yosay');
 var path = require('path');
 var ejs = require('ejs');
 var _ = require('underscore');
-var rExt = /^\.(js|json|scss|sass|css|html|md)$/i;
 
 
 module.exports = yeoman.Base.extend({
@@ -53,14 +52,14 @@ module.exports = yeoman.Base.extend({
   _copyDirectiveScss: function() {
     this.fs.copyTpl(
       this.templatePath('tmpl.scss'),
-      this.destinationPath('src/app/componets/' + this._compName + '.scss'),
+      this.destinationPath('src/app/componets/tmpl.scss'),
       this.props
     );
   },
   _copyDirectiveHtml: function() {
     this.fs.copyTpl(
       this.templatePath('tmpl.html'),
-      this.destinationPath('src/app/componets/' + this._compName + '.html'),
+      this.destinationPath('src/app/componets/tmpl.html'),
       this.props
     );
   },
@@ -75,11 +74,5 @@ module.exports = yeoman.Base.extend({
     return inString.replace(/[_-]\D/g, function(match) {
       return match.charAt(1).toUpperCase();
     });
-  },
-  install: function() {
-    this.installDependencies();
-  },
-  end: function() {
-    console.log('Enjoy coding~ :)');
   }
 });
