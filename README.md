@@ -18,7 +18,7 @@ yo ionic-wechat-app
 
 ##Generate controller:
 ```bash
-yo ionci-wechat-app:controller
+yo ionic-wechat-app:controller
 ```
 + Then input your project_name (Most of time ,you can use the default one) and controller name;
 + `DON'T forget paste the ROUTE.MD to your own index.route.js.`
@@ -26,7 +26,7 @@ yo ionci-wechat-app:controller
 
 ##Generate component:
 ```bash
-yo ionci-wechat-app:component
+yo ionic-wechat-app:component
 ```
 Then input your project_name (Most of time ,you can use the default one) and component name;
 
