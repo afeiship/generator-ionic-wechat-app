@@ -8,7 +8,7 @@
   /** @ngInject */
   function <%= controllerName %>Controller($timeout, toastr) {
     var vm = this;
-    vm.testFn = testFn();
+    vm.testFn = testFn;
 
     vm.myContent = 'I AM AUTO CREATED BY THE GENERATOR!!!';
 
