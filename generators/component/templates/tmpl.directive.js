@@ -12,7 +12,7 @@
       scope: {
         extraValues: '='
       },
-      templateUrl: 'app/components/<%= component_name %>.html',
+      templateUrl: 'app/components/<%= component_name %>/tmpl.html',
       link: linkFunc,
       controller: controllerFunc,
       controllerAs: 'vm'
