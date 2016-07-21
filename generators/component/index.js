@@ -45,21 +45,21 @@ module.exports = yeoman.Base.extend({
   _copyDirectiveJS: function() {
     this.fs.copyTpl(
       this.templatePath('tmpl.directive.js'),
-      this.destinationPath('src/app/componets/' + this._compName + '.directive.js'),
+      this.destinationPath('src/app/components/' + this._compName+'/'+ this._compName + '.directive.js'),
       this.props
     );
   },
   _copyDirectiveScss: function() {
     this.fs.copyTpl(
       this.templatePath('tmpl.scss'),
-      this.destinationPath('src/app/componets/tmpl.scss'),
+      this.destinationPath('src/app/components/'+this._compName+'/tmpl.scss'),
       this.props
     );
   },
   _copyDirectiveHtml: function() {
     this.fs.copyTpl(
       this.templatePath('tmpl.html'),
-      this.destinationPath('src/app/componets/tmpl.html'),
+      this.destinationPath('src/app/components/'+this._compName+'/tmpl.html'),
       this.props
     );
   },
