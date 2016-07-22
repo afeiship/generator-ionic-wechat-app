@@ -18,7 +18,6 @@ module.exports = yeoman.Base.extend({
       type: 'input',
       name: 'project_name',
       message: 'Your project_name',
-      store: true,
       default: function() {
         var cwd = path.basename(process.cwd());
         var result = cwd.split(/[-_]/);
@@ -74,13 +73,22 @@ module.exports = yeoman.Base.extend({
   _rewriteProps: function() {
     var props = this.props;
     this._ctrlName = this.props['controller_name'];
+    this._CtrlName = this._capitalize(this._camelCase(this._ctrlName));
     _.each(props, function(prop, key) {
       this.props[this._camelCase(key)] = this._camelCase(prop);
     }, this);
+
+    _.extend(this.props,{
+      ControllerName:this._CtrlName
+    });
   },
   _camelCase: function(inString) {
     return inString.replace(/[_-]\D/g, function(match) {
       return match.charAt(1).toUpperCase();
     });
+  },
+  _capitalize: function(inString) {
+    var str=inString || '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
   }
 });

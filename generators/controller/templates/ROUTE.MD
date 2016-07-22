@@ -4,7 +4,7 @@
 .state('<%= controller_name %>', {
         url: '/<%= controller_name %>',
         templateUrl: 'app/<%= controller_name %>/index.html',
-        controller: '<%= controllerName %>Controller',
+        controller: '<%= ControllerName %>Controller',
         controllerAs: 'vm'
       })
 ```

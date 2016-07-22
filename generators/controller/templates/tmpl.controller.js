@@ -3,10 +3,10 @@
 
   angular
     .module('<%= projectName %>')
-    .controller('<%= controllerName %>Controller', <%= controllerName %>Controller);
+    .controller('<%= ControllerName %>Controller', <%= ControllerName %>Controller);
 
   /** @ngInject */
-  function <%= controllerName %>Controller($timeout, toastr) {
+  function <%= ControllerName %>Controller($timeout, toastr) {
     var vm = this;
     vm.testFn = testFn;
 
